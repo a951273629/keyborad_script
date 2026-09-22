@@ -5,7 +5,15 @@ from pathlib import Path
 import tomllib
 
 
-CONFIG_PATH = Path(__file__).resolve().parent / "config.toml"
+def get_runtime_directory() -> Path:
+    """返回配置文件所在目录，兼容源码运行和 Nuitka 单文件运行。"""
+    # Nuitka 单文件程序解压后，__file__ 位于临时目录，使用专用字段定位外层 EXE。
+    if "__compiled__" in globals():
+        return Path(__compiled__.containing_dir)
+    return Path(__file__).resolve().parent
+
+
+CONFIG_PATH = get_runtime_directory() / "config.toml"
 
 
 class ConfigError(ValueError):

@@ -1,3 +1,9 @@
 # Python 运行和编译时生成的缓存不应提交到项目中。
 __pycache__/
 *.py[cod]
+
+# Nuitka 构建缓存和发布目录不提交到版本库。
+.nuitka-cache/
+nuitka-crash-report.xml
+build/
+dist/

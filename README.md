@@ -15,6 +15,16 @@ python app.py
 
 自动补气血和死亡回点目前只保存页面配置，尚未实现状态识别、死亡检测和寻路。
 
+## 打包为 Windows 单文件 EXE
+
+在 Windows PowerShell 中执行：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\build.ps1 -Clean
+```
+
+构建脚本会从 `D:\天龙八部\Launch.exe` 提取应用图标，使用 Nuitka 生成 `dist\KeyboardScript.exe`，并把可编辑的 `config.toml` 复制到同一目录。发布时只需要分发这两个文件；目标程序本身不会被打包进去。
+
 ## 创建同名测试窗口
 
 使用下面的命令创建指定数量的真实顶层窗口：
